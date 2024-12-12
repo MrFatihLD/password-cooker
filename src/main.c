@@ -1,40 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 void password_gen(const unsigned int);
+void help();
 
-int main()
+int main(int argc,char *argv[])
 {
-   //Header
-   printf("Password Generator\n");
-   printf("==================\n");
-
-   //input variable for user input
-   unsigned int input;
-   do
+   for(int i=1;i<argc;i++)
    {
-      printf("Enter number between 32 and 100: ");
+      if(strcmp(argv[i],"-h") == 0)
+         help();
+      else if(strcmp(argv[i],"-l") == 0)
+      {
+         if(i+1 < argc)
+         {
+            char *endptr;
+            long number = strtol(argv[i+1],&endptr,10);
 
-      //synchronizes an output stream with the actual file
-      fflush(stdin);
-      //take input from the user
-      scanf("%d",&input);
-
-      //check the input is smaller then 32 or bigger then 100
-      //and print warning for user
-      if(input < 32 || input > 100)
-         printf("Pls Enter between 32 and 100\n\n");
-
-      //check the input is smaller then 32 or bigger then 100.
-      //If yes, loop while correct input
-   } while(input < 32 || input > 100);
-
-   //print what user entered
-   printf("You entered -> %d\n",input);
-
-   //give input to the function and run
-   password_gen(input);
+            if(*endptr != '\0')
+            {
+               printf("ERROR: This is not valid number %s\n",argv[i+1]);
+               return 1;
+            }
+            else
+            {
+               unsigned int length = (unsigned int)number;
+               if(length < 32 || length > 100)
+               {
+                  printf("ERROR: The number is not between 32 and 100\n");
+                  return 1;
+               }
+               else
+               {
+                  printf("You entered -> %d\n",length);
+                  password_gen(length);
+               }
+            }
+         }
+         else
+         {
+            printf("ERROR: after -l is not number valid\n");
+         }
+      }
+   }
 }
 
 void password_gen(const unsigned int number)
@@ -68,4 +78,11 @@ void password_gen(const unsigned int number)
       //print to the console the generated character
       printf("%c",letter);
    }
+}
+
+//help sequence
+void help()
+{
+   printf("   -l\tgive length for your password. Password length between 32 and 100\n");
+   printf("   -h\tview the help sequence\n");
 }
