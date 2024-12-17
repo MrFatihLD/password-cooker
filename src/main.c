@@ -58,24 +58,18 @@ void password_gen(const unsigned int number)
    for(int i=0;i<number;i++)
    {
       //created letter variable for integer number
-      unsigned int letter;
-      //created password array with length of the input value from the user
-      char password[number];
+      unsigned int letter,temp;
 
       //generate random number between 32 and 126. Then write it to letter variable
-      letter = (rand() % (max - min + 1) + min);
+      letter = rand() % (max - min + 1) + min;
 
-      //check if previous or last second character is equal to actuell character.
-      //if yes, generate random number and write it to letter variable
-      if(password[i-1] == password[i])
-         letter = (rand() % (max - min + 1) + min);
-      else if(password[i-2] == password[i])
-         letter = (rand() % (max - min + 1) + min);
+      check:
+      if(letter == temp)
+      {
+        letter = rand() % (max - min + 1) + min;
+        goto check;
+      }
 
-      //convert letter variable to char and write it to index of the password variable
-      password[i] = (char)letter;
-
-      //print to the console the generated character
       printf("%c",letter);
    }
 }
