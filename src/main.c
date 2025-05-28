@@ -70,8 +70,12 @@ void password_gen(const unsigned int number)
         goto check;
       }
 
+      temp = letter;
+
       printf("%c",letter);
    }
+
+   printf("\n");
 }
 
 //help sequence
