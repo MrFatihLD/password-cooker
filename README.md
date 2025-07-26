@@ -14,12 +14,24 @@
 
 ## 🚀 How to Use
 
-### 1. Do Not Run by Double-Clicking  
+### 1. Do Not Run by Double-Clicking
 This program is designed to be run via the command line **with arguments**. If you double-click the `.exe` file, it will immediately exit or show an error because no parameters are passed.
 
-### 2. Running from the Executable's Directory  
+### 2. Running from the Executable's Directory
 Open a terminal (Command Prompt, PowerShell, or Windows Terminal), then **navigate to the folder where `pwdg.exe` is located**. Use the following format to run:
 
 ```bash
 ./pwdg.exe -l 32
+```
 
+## 🛠️ Adding to PATH (Optional)
+If you don't want to run the program from its directory every time, you can add the folder containing `pwdg.exe` to your Windows Environment Variables (PATH):
+  1. Open the Start Menu and search for "Environment Variables", then open the result.
+  2. Under the "System variables" section, select Path and click the Edit button.
+  3. Click New and add the full path to the folder where pwdg.exe is located.
+  4. Close and reopen your terminal to apply the changes.
+
+  Once added, you can run the program from anywhere:
+  ```bash
+  pwdg -l 32
+  ```
