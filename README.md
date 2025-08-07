@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/images/logo.png" alt="Password-Cooker Logo" width="200"/>
+</p>
+
 # Password-Cooker
 
 **Password-Cooker** is a lightweight and fast command-line tool written in **C** that generates secure random passwords. The user can specify the desired password length between **32 and 100 characters** (inclusive), making it ideal for creating strong credentials for various use cases.
